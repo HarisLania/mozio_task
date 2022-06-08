@@ -2,7 +2,7 @@ from django.test import TestCase
 from provider.models import Provider
 from service_area.models import ServiceArea
 from rest_framework.test import RequestsClient
-
+from http import HTTPStatus
 class ProviderTestModels(TestCase):
 
     @classmethod
@@ -43,4 +43,4 @@ class ProviderTestModels(TestCase):
                                     'lat': '23.23',
                                     'provider':1
                                 })
-        assert response.status_code == 200
+        self.assertEqual(response.status_code, HTTPStatus.CREATED._value_)
