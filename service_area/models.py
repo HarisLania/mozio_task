@@ -8,7 +8,7 @@ class ServiceArea(models.Model):
     name = models.CharField(max_length=64, unique=True)
     price = models.IntegerField()
     long = models.DecimalField(max_digits=8, decimal_places=5)
-    lat = models.DecimalField(max_digits=7, decimal_places=5)
+    lat = models.DecimalField(max_digits=8, decimal_places=5)
     provider = models.ForeignKey(Provider, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
