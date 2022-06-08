@@ -1,9 +1,50 @@
 # mozio_task
 
-##### 1. Polygons fetching with given latitude and longitude
-    http://127.0.0.1:8000/service-area/85.42000/182.20000
+#### Coverage Record: 99%
 
-### Provider Endpoints
+### DEPLOYMENT ON HEROKU
 
-##### 2. Install Libraries
-    pip install -r requirements.txt
+##### URL
+    https://mozio-task.herokuapp.com/
+
+### 1.Polygon Endpoints
+
+##### 1.1 GET: LIST
+    https://mozio-task.herokuapp.com/<lat>/<long>
+
+### 2.Provider Endpoints
+
+##### 2.1 POST
+    https://mozio-task.herokuapp.com/provider/
+Data: {name, phone_number, email, language, currency}
+
+##### 2.2.1 GET: LIST
+    https://mozio-task.herokuapp.com/provider/
+
+##### 2.2.2 GET: RETRIEVE
+    https://mozio-task.herokuapp.com/provider/<str:pk>
+
+##### 2.3 PUT
+    https://mozio-task.herokuapp.com/provider/<str:pk>
+    
+##### 2.4 DELETE
+    https://mozio-task.herokuapp.com/provider/<str:pk>
+
+
+### 3.Service Area Endpoints
+
+##### 3.1 POST
+    https://mozio-task.herokuapp.com/service-area/
+Data: {name, price, long, lat, provider}
+
+##### 3.2.1 GET: LIST
+    https://mozio-task.herokuapp.com/service-area/
+
+##### 3.2.2 GET: RETRIEVE
+    https://mozio-task.herokuapp.com/service-area/<str:pk>
+
+##### 3.3 PUT
+    https://mozio-task.herokuapp.com/service-area/<str:pk>
+    
+##### 3.4 DELETE
+    https://mozio-task.herokuapp.com/service-area/<str:pk>
