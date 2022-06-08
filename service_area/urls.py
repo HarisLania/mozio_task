@@ -1,9 +1,16 @@
 from django.urls import path
-from .views import ServiceAreaGenericAPIView, PolygonsAPIView
+from .views import ServiceAreaAPIView, PolygonsAPIView
 
 urlpatterns = [
-    path('', ServiceAreaGenericAPIView.as_view()),
-    path('<str:pk>', ServiceAreaGenericAPIView.as_view()),
+    path('', ServiceAreaAPIView.as_view({
+        'get': 'list',
+        'post': 'create'
+    })),
+    path('<str:pk>', ServiceAreaAPIView.as_view({
+        'get': 'retrieve',
+        'put': 'update',
+        'delete': 'destroy'
+    })),
     path('<lat>/<long>', PolygonsAPIView.as_view({
                                         'get': 'list'
                                         }))

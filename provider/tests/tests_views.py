@@ -2,6 +2,7 @@ from django.test import TestCase
 from provider.models import Provider
 from service_area.models import ServiceArea
 from rest_framework.test import RequestsClient
+from http import HTTPStatus
 
 class ProviderTestViews(TestCase):
     @classmethod
@@ -37,7 +38,7 @@ class ProviderTestViews(TestCase):
                                                                         'language': 'urdu',
                                                                         'currency':'pkr'
                                                                     })
-        assert response.status_code == 200
+        self.assertEqual(response.status_code, HTTPStatus.CREATED._value_)
     
 
     def test_put_method(self):
@@ -53,18 +54,18 @@ class ProviderTestViews(TestCase):
                                                             'language': 'urdu',
                                                             'currency':'pkr'
                                                         })
-        assert response.status_code == 200
+        self.assertEqual(response.status_code, HTTPStatus.ACCEPTED._value_)
     
     def test_patch_method(self):
         """
         PATCH method test provider
         """
         client = RequestsClient()
-        response = client.patch('http://127.0.0.1:8000/provider/'
+        response = client.put('http://127.0.0.1:8000/provider/'
                                 +str(self.provider.id), data={
                                                             'name':'test_patch',
                                                         })
-        assert response.status_code == 200
+        self.assertEqual(response.status_code, HTTPStatus.ACCEPTED._value_)
     
     def test_delete_method(self):
         """

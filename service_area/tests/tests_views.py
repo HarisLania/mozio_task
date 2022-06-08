@@ -2,7 +2,7 @@ from django.test import TestCase
 from provider.models import Provider
 from service_area.models import ServiceArea
 from rest_framework.test import RequestsClient
-
+from http import HTTPStatus
 class ProviderTestViews(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -44,7 +44,7 @@ class ProviderTestViews(TestCase):
                                                                         "lat":12.32,
                                                                         "provider":self.provider.id
                                                                     })
-        assert response.status_code == 200
+        self.assertEqual(response.status_code, HTTPStatus.CREATED._value_)
     
 
     def test_put_method(self):
@@ -60,18 +60,18 @@ class ProviderTestViews(TestCase):
                                                             "lat":12.32,
                                                             "provider":self.provider.id
                                                         })
-        assert response.status_code == 200
+        self.assertEqual(response.status_code, HTTPStatus.ACCEPTED._value_)
     
     def test_patch_method(self):
         """
         PATCH method test service-area
         """
         client = RequestsClient()
-        response = client.patch('http://127.0.0.1:8000/service-area/'
+        response = client.put('http://127.0.0.1:8000/service-area/'
                                 +str(self.service_area.id), data={
                                                             'name':'test_area_patch',
                                                         })
-        assert response.status_code == 200
+        self.assertEqual(response.status_code, HTTPStatus.ACCEPTED._value_)
     
     def test_delete_method(self):
         """
